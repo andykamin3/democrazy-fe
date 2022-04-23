@@ -52,7 +52,7 @@ export default function DAOCard(props) {
       <Typography variant="body2" textAlign="center" paddingX="30px">
         {description}
       </Typography>
-      <Button size="small" sx={{marginTop: 1, border: "1.5px solid #fff"}}><Link component={RouterLink} to={"dao/"+id} sx={{textDecoration: "none"}}>View</Link></Button>
+      <Button size="medium" sx={{marginTop: 1, border: "1.5px solid #fff"}}><Link component={RouterLink} to={"dao/"+id} sx={{textDecoration: "none"}}>View</Link></Button>
     </Stack>
   );
 }

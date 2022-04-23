@@ -14,15 +14,17 @@ export default function ProposalCard({ proposal }) {
   const props = proposal.status?.date.seconds;
   const lbl = new Date(props * 1000).toDateString();
   return (
-    <Box sx={{ minWidth: 275 }}>
+    <Box sx={{ minWidth: 200 }}>
       <Card
         variant="confined"
         sx={{
           borderRadius: 5,
           border: "1px solid white",
           backgroundColor: "background.default",
-          padding: "5px",
           paddingX: "8px",
+          paddingBottom: "10px",
+          width: "600px",
+          marginLeft: "50px"
         }}
       >
         <React.Fragment>
@@ -78,11 +80,11 @@ export default function ProposalCard({ proposal }) {
             </Stack>
           </CardContent>
           <CardActions>
-            <Button size="small">
-              <Link component={RouterLink} to={"proposal/" + proposal.id}>
-                Learn More
-              </Link>
-            </Button>
+            <Link component={RouterLink} to={"proposal/" + proposal.id}>
+              <Button size="large" variant="contained" color="button" sx={{ textDecoration: "none" }}>
+                  Learn More
+              </Button>
+            </Link>
           </CardActions>
         </React.Fragment>
       </Card>
