@@ -1,14 +1,15 @@
-import { Chip, Grid, Stack, Typography } from "@mui/material";
+import {Chip, Grid, Stack, Typography} from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import { useParams } from "react-router-dom";
-import { useWeb3React } from "@web3-react/core";
+import {useParams} from "react-router-dom";
+import {useWeb3React} from "@web3-react/core";
 
 export function ProposalPage({ daos, proposals }) {
+
   const { account, active } = useWeb3React();
   const vote = async (vote, address, proposal) => {
     if (account) {
@@ -26,23 +27,43 @@ export function ProposalPage({ daos, proposals }) {
   console.log(params);
   let daoLookUp = daos.find(e => e.id === params.daoId);
   console.log(daoLookUp);
-  const { name, id, img_url, description, token_address } = daoLookUp;
+  let name, id, img_url, description, token_address;
+  if(daoLookUp !== undefined){
+    name = daoLookUp.name;
+    id= daoLookUp.id;
+    img_url = daoLookUp.img_url;
+    description = daoLookUp.description;
+    token_address = daoLookUp.token_address;
+  }
   const proposalLookup = proposals.find(
     e => e.daoId === id && e.id === params.proposalId
   );
-  const {
-    title: pTitle,
-    author: pAuthor,
-    status: pStatus,
-    description: pDescription,
-    id: pId,
-  } = proposalLookup;
+  let pTitleO, pAuthorO, pDateO, pTimeO, pStatusO, pDescriptionO, pFdtO;
+  if(proposalLookup !== undefined){
+    const {
+      title: pTitle,
+      author: pAuthor,
+      status: pStatus,
+      description: pDescription,
+      id: pId,
+      date:pDate,
+      time:pTime
+    } = proposalLookup;
+    pTitleO=pTitle;
+    pAuthorO = pAuthor;
+    pStatusO = pStatus;
+    pDescriptionO = pDescription;
+    pFdtO= pDate+pTime;
+
+  }
+
+
 
   return (
     <Grid container spacing={2}>
       <Grid item lg={8} xs={12}>
         <div>
-          <Typography variant={"h4"}>{pTitle}</Typography>
+          <Typography variant={"h4"}>{pTitleO}</Typography>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             By Author{" "}
             <Chip
@@ -50,35 +71,35 @@ export function ProposalPage({ daos, proposals }) {
               color="primary"
               size="small"
               icon={<FaceIcon />}
-              label={pAuthor}
+              label={pAuthorO}
               component={"span"}
             />
           </Typography>
-          <Typography paragraph>{pDescription}</Typography>
+          <Typography paragraph>{pDescriptionO}</Typography>
           <Stack
             direction={"row"}
             spacing={1}
             className={"dao-title-container"}
           >
-            {pStatus?.result !== undefined && (
+            {pStatusO?.result !== undefined && (
               <Chip
-                color={pStatus?.result ? "success" : "error"}
-                label={pStatus?.result ? "Aye" : "Nay"}
+                color={pStatusO?.result ? "success" : "error"}
+                label={pStatusO?.result ? "Aye" : "Nay"}
                 component={"span"}
               />
             )}
             <Chip
               variant="outlined"
               color={
-                new Date(pStatus?.date) > Date.now() ? "secondary" : "error"
+                new Date(pDateO) > Date.now() ? "secondary" : "error"
               }
               size="small"
               icon={<CalendarMonthIcon />}
               label={
                 "Voting closes @ " +
-                new Date(pStatus?.date.seconds * 1000).toLocaleDateString() +
+                new Date(pFdtO).toLocaleDateString() +
                 " " +
-                new Date(pStatus?.date.seconds * 1000).toLocaleTimeString()
+                new Date(pFdtO).toLocaleTimeString()
               }
               component={"span"}
             />
@@ -94,7 +115,7 @@ export function ProposalPage({ daos, proposals }) {
               <Typography component="div" variant="h5">
                 Cast your vote
               </Typography>
-              {new Date(pStatus?.date) > Date.now() ? (
+              {new Date(pFdtO) > Date.now() ? (
                 <Typography
                   variant="subtitle1"
                   color="text.secondary"
@@ -112,7 +133,7 @@ export function ProposalPage({ daos, proposals }) {
                 </Typography>
               )}
             </CardContent>
-            {new Date(pStatus?.date) > Date.now() ? (
+            {new Date(pFdtO) > Date.now() ? (
               <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
                 <Button
                   variant="contained"
