@@ -1,16 +1,20 @@
-import {Chip, Grid, Stack, Typography} from "@mui/material";
+import { Chip, Grid, Stack, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import {useParams} from "react-router-dom";
-import {useWeb3React} from "@web3-react/core";
+import { useParams } from "react-router-dom";
+import { useWeb3React } from "@web3-react/core";
 
 export function ProposalPage({ daos, proposals }) {
-
+  const { daoId, proposalId } = useParams();
   const { account, active } = useWeb3React();
+
+  const dao = daos.find(e => e.id === daoId);
+  const proposal = proposals.find(e => e.id === proposalId);
+
   const vote = async (vote, address, proposal) => {
     if (account) {
       const sign = await window.ethereum.request({
@@ -23,41 +27,37 @@ export function ProposalPage({ daos, proposals }) {
     }
   };
 
-  const params = useParams();
-  console.log(params);
-  let daoLookUp = daos.find(e => e.id === params.daoId);
-  console.log(daoLookUp);
+  // console.log(params);
+  // let daoLookUp = daos.find(e => e.id === params.daoId);
+  // console.log(daoLookUp);
   let name, id, img_url, description, token_address;
-  if(daoLookUp !== undefined){
-    name = daoLookUp.name;
-    id= daoLookUp.id;
-    img_url = daoLookUp.img_url;
-    description = daoLookUp.description;
-    token_address = daoLookUp.token_address;
+  if (dao !== undefined) {
+    name = dao.name;
+    id = dao.id;
+    img_url = dao.img_url;
+    description = dao.description;
+    token_address = dao.token_address;
   }
-  const proposalLookup = proposals.find(
-    e => e.daoId === id && e.id === params.proposalId
-  );
+  // const proposalLookup = proposals.find(
+  //   e => e.daoId === id && e.id === params.proposalId
+  // );
   let pTitleO, pAuthorO, pDateO, pTimeO, pStatusO, pDescriptionO, pFdtO;
-  if(proposalLookup !== undefined){
+  if (proposal !== undefined) {
     const {
       title: pTitle,
       author: pAuthor,
       status: pStatus,
       description: pDescription,
       id: pId,
-      date:pDate,
-      time:pTime
-    } = proposalLookup;
-    pTitleO=pTitle;
+      date: pDate,
+      time: pTime,
+    } = proposal;
+    pTitleO = pTitle;
     pAuthorO = pAuthor;
     pStatusO = pStatus;
     pDescriptionO = pDescription;
-    pFdtO= pDate+pTime;
-
+    pFdtO = pDate + pTime;
   }
-
-
 
   return (
     <Grid container spacing={2}>
@@ -90,9 +90,7 @@ export function ProposalPage({ daos, proposals }) {
             )}
             <Chip
               variant="outlined"
-              color={
-                new Date(pDateO) > Date.now() ? "secondary" : "error"
-              }
+              color={new Date(pDateO) > Date.now() ? "secondary" : "error"}
               size="small"
               icon={<CalendarMonthIcon />}
               label={

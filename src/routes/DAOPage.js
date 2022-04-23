@@ -1,7 +1,7 @@
-import {Avatar, Divider, Grid, Link, Stack, Typography} from "@mui/material";
+import { Avatar, Divider, Grid, Link, Stack, Typography } from "@mui/material";
 import ProposalCard from "../components/ProposalCard";
-import {Outlet} from "@mui/icons-material";
-import {Link as RouterLink, useParams} from "react-router-dom";
+import { Outlet } from "@mui/icons-material";
+import { Link as RouterLink, useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 export function DAOPage({ daos, proposals }) {
@@ -25,8 +25,8 @@ export function DAOPage({ daos, proposals }) {
         <div>
           <Typography variant={"h4"}>Proposals</Typography>
           <Stack spacing={2}>
-            {proposals.map((proposal) => (
-              <ProposalCard key={proposal} proposal={proposal} />
+            {proposals.map(proposal => (
+              <ProposalCard key={proposal.id} proposal={proposal} />
             ))}
           </Stack>
         </div>
@@ -42,7 +42,7 @@ export function DAOPage({ daos, proposals }) {
           <Avatar
             alt={dao.name}
             src={dao.img_url}
-     w       sx={{ width: 56, height: 56 }}
+            sx={{ width: 56, height: 56 }}
           />
           <Typography variant="h4" component="h4">
             {dao.name}
@@ -52,7 +52,8 @@ export function DAOPage({ daos, proposals }) {
           <Link component={RouterLink} to={"create"}>
             Create a proposal
           </Link>
-        </Button>        <Divider variant="middle" />
+        </Button>{" "}
+        <Divider variant="middle" />
         <Typography sx={{ my: 2 }} variant="body1">
           {dao.description}
         </Typography>
