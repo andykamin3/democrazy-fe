@@ -3,11 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { blueGrey } from '@mui/material/colors';
+
+const theme = createTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      main: "#fff", 
+    },
+    text: {
+      primary: "#fff",
+    },
+    background: {
+      default: blueGrey[900],
+      paper: blueGrey[800],
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

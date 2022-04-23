@@ -23,6 +23,8 @@ import {Web3ReactProvider} from '@web3-react/core'
 import {Web3Provider} from "@ethersproject/providers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import {DAOPage} from "./routes/DAOPage";
+import title from "./media/Title.png"
+import { blueGrey } from '@mui/material/colors';
 
 function getLibrary() {
   const p = new WalletConnectProvider({
@@ -45,18 +47,37 @@ function App(props) {
   };
 
   const drawer = (
-    <div>
+    <Box 
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
       <Toolbar />
-      <Divider />
-      <List>
-        <ListItem to={"/"} component={RouterLink} button key={'Home'}>
-          <ListItemIcon>
-            <HomeIcon/>
-          </ListItemIcon>
-          <ListItemText primary={'Home'} />
+      <List style={{
+        textAlign: "center"
+      }}>
+        <ListItem to={"/"} component={RouterLink} key={'Home'}>
+            <img 
+              src={title} 
+              alt="logo" 
+              width={200}
+              style={{
+                marginLeft: -40,
+                marginTop: -25
+              }}
+            />
         </ListItem>
       </List>
-      <Divider />
+      <Box style={{
+        position: "fixed",
+        top: 120,
+        width: 200,
+        height: 500,
+        borderRadius: 15,
+        backgroundColor: blueGrey[900],
+      }}>
+        <h1>What the fuck</h1>
+      </Box>
       <List style={{
         position: "fixed",
         bottom: 0,
@@ -68,7 +89,7 @@ function App(props) {
         </ListItem>
       </List>
 
-    </div>
+    </Box>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -79,7 +100,7 @@ function App(props) {
     <BrowserRouter>
     <Box sx={{display: 'flex'}}>
       <CssBaseline/>
-      <AppBar
+      {/* <AppBar
         position="fixed"
         sx={{
           width: {sm: `calc(100% - ${drawerWidth}px)`},
@@ -100,28 +121,12 @@ function App(props) {
             democrazy
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Box
         component="nav"
         sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
         aria-label="menu"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: {xs: 'block', sm: 'none'},
-            '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
-          }}
-        >
-          {drawer}
-        </Drawer>
         <Drawer
           variant="permanent"
           sx={{

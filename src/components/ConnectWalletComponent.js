@@ -7,11 +7,18 @@ import {Injected, WalletConnectConfig} from "../constants/WalletConnectConfig";
 export function ConnectWalletComponent() {
   const { activate, deactivate,active, account } = useWeb3React();
   console.log(active,account);
-  const walletButtons = (<div><Button variant="outlined" onClick={()=>{
-    activate(WalletConnectConfig).then(r =>  console.log(r)).catch(e=>console.log(e))}
-  }>WalletConnect</Button><br/><Button color={"secondary"} onClick={()=>{
-    activate(Injected).then(r =>  console.log(r)).catch(e=>console.log(e))}
-  }>Metamask</Button></div>)
+  const walletButtons = (
+    <div style={{
+      marginBottom: -25
+    }}>
+      <Button variant="contained" onClick={ () => { activate(WalletConnectConfig).then(r =>  console.log(r)).catch(e=>console.log(e)) }}>
+        WalletConnect
+      </Button>
+      <br /><Button variant="outlined" style={{margin:20, marginTop:10}}onClick={()=>{
+        activate(Injected).then(r =>  console.log(r)).catch(e=>console.log(e))}
+      }>Metamask</Button>
+    </div>
+  )
   const connectedChip = <Chip onClick={deactivate} variant="outlined" color="success" icon={<FaceIcon />} label={"Connected @"+account?.substring(0,6)+"..."}/>;
   const disconnectedChip = <Chip variant="outlined" color="warning" icon={<FaceIcon />} label={"Connected @"+account?.substring(0,6)+"..."}/>;
   return account ? (active?connectedChip : disconnectedChip) : walletButtons;
