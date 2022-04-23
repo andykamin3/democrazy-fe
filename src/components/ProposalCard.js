@@ -14,14 +14,20 @@ export default function ProposalCard(props) {
   const {title, author, status, description, id, daoId} = props.proposal
   return (
     <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined">
+      <Card variant="confined" sx={{
+        borderRadius: 5,
+        border: "1px solid white",
+        backgroundColor: "background.default",
+        padding: "5px",
+        paddingX: "8px"
+      }}>
         <React.Fragment>
         <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            By Author <Chip variant="outlined" color="primary" size="small" icon={<FaceIcon />} label={author.substring(0,6)+"..."} component={"span"} />
+          <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
+            By <Chip variant="outlined" color="primary" size="small" icon={<FaceIcon />} label={author.substring(0,10)+"..."} component={"span"} />
 
           </Typography>
-          <Typography variant="h5">
+          <Typography sx={{ fontWeight: 900, marginTop: 1.5 }} variant="h5">
             {title}
           </Typography>
 
@@ -33,8 +39,8 @@ export default function ProposalCard(props) {
             Status
           </Typography>
           <Stack direction={"row"} spacing={1} className={"dao-title-container"}>
-            {status.result !== undefined && <Chip color={status.result ? "success":"error"}   label={status?.result ? "Aye" : "Nay"} component={"span"} /> }
-            <Chip variant="outlined" color={new Date(status?.date)>Date.now() ? "secondary":"error"} size="small" icon={<CalendarMonthIcon />} label={status?.date} component={"span"} />
+            {status.result !== undefined && <Chip sx={{ height: 35, borderRadius: 50 }} color={status.result ? "success":"error"}   label={status?.result ? "Aye" : "Nay"} component={"span"} /> }
+            <Chip sx={{ height: 35, paddingX: 1}} variant="outlined" color={new Date(status?.date)>Date.now() ? "secondary":"error"} size="small" icon={<CalendarMonthIcon />} label={status?.date} component={"span"} />
 
           </Stack>
         </CardContent>

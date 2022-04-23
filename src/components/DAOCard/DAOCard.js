@@ -36,23 +36,23 @@ export default function DAOCard(props) {
     //   </CardActions>
     // </Card>
 
-    <Stack spacing={2} alignItems="center" sx={{
+    <Stack alignItems="center" sx={{
       border: "1.5px solid #fff", 
       borderRadius: 5,
-      padding: "30px 0px"
+      padding: "20px 0px",
       }}>
       <Avatar
         alt={name}
         src={img_url}
         sx={{ width:150, height: 150}}
       />
-      <Typography variant="h5" component="div" sx={{fontWeight: 900}}>
+      <Typography variant="h5" component="div" sx={{fontWeight: 900, marginTop: 2}}>
         {name}
       </Typography>
       <Typography variant="body2" textAlign="center" paddingX="30px">
         {description}
       </Typography>
-      <Button size="small"><Link component={RouterLink} to={"dao/"+id}>View</Link></Button>
+      <Button size="small" sx={{marginTop: 1, border: "1.5px solid #fff"}}><Link component={RouterLink} to={"dao/"+id} sx={{textDecoration: "none"}}>View</Link></Button>
     </Stack>
   );
 }

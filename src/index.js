@@ -12,8 +12,12 @@ const theme = createTheme({
     primary: {
       main: "#fff", 
     },
+    secondary: {
+      main: "#b0bec5"
+    },
     text: {
       primary: "#fff",
+      secondary: "#90a4ae"
     },
     background: {
       default: blueGrey[900],

@@ -16,9 +16,11 @@ import {Web3ReactProvider} from '@web3-react/core'
 import {Web3Provider} from "@ethersproject/providers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import {DAOPage} from "./routes/DAOPage";
-import title from "./media/Title.png"
+import title from "./media/democrazy.png"
 import {ProposalCreate} from "./routes/ProposalCreate";
 import {QueryClient, QueryClientProvider,} from 'react-query';
+import { blueGrey } from '@mui/material/colors';
+import { maxHeight } from '@mui/system';
 
 const queryClient = new QueryClient();
 function getLibrary() {
@@ -55,24 +57,24 @@ function App(props) {
             <img
               src={title}
               alt="logo"
-              width={200}
+              width={170}
               style={{
-                marginLeft: -40,
-                marginTop: -25
+                marginLeft: -50,
+                marginTop: 15
               }}
             />
         </ListItem>
       </List>
-      {/*<Box style={{*/}
-      {/*  position: "fixed",*/}
-      {/*  top: 120,*/}
-      {/*  width: 200,*/}
-      {/*  height: 500,*/}
-      {/*  borderRadius: 15,*/}
-      {/*  backgroundColor: blueGrey[900],*/}
-      {/*}}>*/}
-      {/*  <h1>What the fuck</h1>*/}
-      {/*</Box>*/}
+      <Box style={{
+        position: "fixed",
+        top: 120,
+        width: 200,
+        height: 500,
+        borderRadius: 15,
+        backgroundColor: blueGrey[900],
+      }}>
+        {/* <h1>What the fuck</h1> */}
+      </Box>
       <List style={{
         position: "fixed",
         bottom: 0,
@@ -136,7 +138,7 @@ function App(props) {
       </Box>
       <Box
         component="main"
-        sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
+        sx={{flexGrow: 1, px: 20, width: {sm: `calc(120% - ${drawerWidth}px)`}}}
       >
         <Toolbar/>
 
