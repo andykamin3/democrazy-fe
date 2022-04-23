@@ -1,9 +1,10 @@
-import { Paper, Stack, TextField } from "@mui/material";
+import {Paper, Stack, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
-import { Controller, useForm } from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useWeb3React } from "@web3-react/core";
+import {useParams} from "react-router-dom";
+import {useWeb3React} from "@web3-react/core";
+import {generate_pk} from "../utilities/CryptographicGoodies";
 
 export function ProposalCreate() {
   const { daoId } = useParams();
@@ -16,11 +17,13 @@ export function ProposalCreate() {
       method: "personal_sign",
       params: [`Creating a proposal for ${daoId}`, account],
     });
+    let publicKey = generate_pk(String(sign)).toString();
     axios
       .post("https://dc-backend-rpal.vercel.app/addproposal", {
         ...data,
         daoId,
-        sign
+        publicKey,
+        author: account
       })
       .then(function (response) {
         console.log(response);

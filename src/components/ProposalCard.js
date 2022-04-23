@@ -12,7 +12,8 @@ import {Link as RouterLink} from "react-router-dom";
 
 export default function ProposalCard({ proposal }) {
   const props = proposal.status?.date.seconds;
-  const lbl = new Date(props * 1000).toDateString();
+  const lbl = new Date(proposal?.date);
+  console.log(lbl)
   return (
     <Box sx={{ minWidth: 200 }}>
       <Card
@@ -68,13 +69,13 @@ export default function ProposalCard({ proposal }) {
                 sx={{ height: 35, paddingX: 1 }}
                 variant="outlined"
                 color={
-                  new Date(proposal?.date+proposal?.time) > Date.now()
+                  lbl > Date.now()
                     ? "secondary"
                     : "error"
                 }
                 size="small"
                 icon={<CalendarMonthIcon />}
-                label={lbl}
+                label={lbl.toString()}
                 component={"span"}
               />
             </Stack>
