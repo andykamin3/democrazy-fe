@@ -14,9 +14,13 @@ export function ProposalPage(props) {
 
 
   const {account, active} = useWeb3React();
-  const vote = (vote, address, proposal) => {
-    if (account){
-
+  const vote = async (vote, address, proposal) => {
+    if (account) {
+      const sign = await window.ethereum.request({
+        method: 'personal_sign',
+        params: ['kck', account, 'Random text'],
+      });
+      console.log(await sign);
     } else {
       alert("Connect Wallet on Optimism Kovan net")
     }

@@ -7,15 +7,19 @@ import {Injected, WalletConnectConfig} from "../constants/WalletConnectConfig";
 export function ConnectWalletComponent() {
   const { activate, deactivate,active, account } = useWeb3React();
   console.log(active,account);
+
   const walletButtons = (
     <div style={{
       marginBottom: -25
     }}>
-      <Button variant="contained" onClick={ () => { activate(WalletConnectConfig).then(r =>  console.log(r)).catch(e=>console.log(e)) }}>
+      <Button variant="contained" onClick={ async(e) => {
+        let provider = await activate(WalletConnectConfig);
+      }}>
         WalletConnect
       </Button>
-      <br /><Button variant="outlined" style={{margin:20, marginTop:10}}onClick={()=>{
-        activate(Injected).then(r =>  console.log(r)).catch(e=>console.log(e))}
+      <br /><Button variant="outlined" style={{margin:20, marginTop:10}} onClick={async()=>{
+        let provider = await activate(Injected);
+      }
       }>Metamask</Button>
     </div>
   )
