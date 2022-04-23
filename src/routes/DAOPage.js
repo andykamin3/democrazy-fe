@@ -1,16 +1,23 @@
 import {DAOS, PROPOSALS} from "../constants/Mock";
 import {Avatar, Divider, Grid, Stack, Typography} from "@mui/material";
 import ProposalCard from "../components/ProposalCard";
+import {Outlet} from "@mui/icons-material";
+import {useParams} from "react-router-dom";
+
 
 export function DAOPage(){
-  const {name, id, img_url, description, token_address} = DAOS[0]
+  const params =useParams()
+  console.log(params);
+  let daoLookUp =DAOS.find((e)=> e.id === params.daoId);
+  console.log(daoLookUp);
+  const {name, id, img_url, description, token_address} = daoLookUp;
 
   return (<Grid container spacing={2}>
     <Grid item lg={8} xs={12} >
       <div>
-        <Typography variant={"h4"}>Proposal</Typography>
+        <Typography variant={"h4"}>Proposals</Typography>
         <Stack spacing={2}>
-          {PROPOSALS.map((e)=><ProposalCard key={e.id} proposal={e}/>)}
+          {PROPOSALS.filter((e)=> e.daoId === params.daoId).map((e)=><ProposalCard key={e.id} proposal={e}/>)}
 
         </Stack>
       </div>
@@ -35,4 +42,11 @@ export function DAOPage(){
       </Typography>
     </Grid>
   </Grid> );
+}
+
+
+
+export function DAOContainer(){
+   console.log("Dao container page")
+  return <Outlet/>
 }

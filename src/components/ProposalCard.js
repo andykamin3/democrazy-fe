@@ -6,11 +6,12 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import FaceIcon from '@mui/icons-material/Face';
-import {Chip, Stack} from "@mui/material";
+import {Chip, Link, Stack} from "@mui/material";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import {Link as RouterLink} from "react-router-dom";
 
 export default function ProposalCard(props) {
-  const {title, author, status, description, id} = props.proposal
+  const {title, author, status, description, id, daoId} = props.proposal
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">
@@ -38,7 +39,7 @@ export default function ProposalCard(props) {
           </Stack>
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button size="small"><Link component={RouterLink} to={"proposal/"+id}>Learn More</Link></Button>
         </CardActions>
       </React.Fragment>
       </Card>

@@ -16,11 +16,11 @@ import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import {Home} from "./routes/Home";
 import {ProposalPage} from "./routes/ProposalPage";
-import {BrowserRouter, Route, Routes, Link as RouterLink} from "react-router-dom";
+import {BrowserRouter, Link as RouterLink, Route, Routes} from "react-router-dom";
 import {ConnectWalletComponent} from "./components/ConnectWalletComponent";
 
-import { Web3ReactProvider } from '@web3-react/core'
-import { Web3Provider } from "@ethersproject/providers";
+import {Web3ReactProvider} from '@web3-react/core'
+import {Web3Provider} from "@ethersproject/providers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import {DAOPage} from "./routes/DAOPage";
 
@@ -141,9 +141,8 @@ function App(props) {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="proposal" element={<ProposalPage />} />
-            <Route path="dao" element={<DAOPage />} />
-
+            <Route path="dao/:daoId/proposal/:proposalId" element={<ProposalPage />} />
+            <Route path={"dao/:daoId"} element={<DAOPage />}/>
             <Route
               path="*"
               element={

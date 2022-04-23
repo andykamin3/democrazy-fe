@@ -1,21 +1,20 @@
-import {Avatar, Grid, Stack, Typography, Divider, Chip} from "@mui/material";
+import {Chip, Grid, Stack, Typography} from "@mui/material";
 import {DAOS, PROPOSALS} from "../constants/Mock";
-import ProposalCard from "../components/ProposalCard";
 import FaceIcon from "@mui/icons-material/Face";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
 import Button from "@mui/material/Button";
+import {useParams} from "react-router-dom";
 
 export function ProposalPage(props) {
-  const {name, id, img_url, description, token_address} = DAOS[0]
-  const {title:pTitle, author:pAuthor, status:pStatus, description:pDescription, id:pId} = PROPOSALS[0]
+  const params =useParams()
+  console.log(params);
+  let daoLookUp =DAOS.find((e)=> e.id === params.daoId);
+  console.log(daoLookUp);
+  const {name, id, img_url, description, token_address} = daoLookUp;
+  const {title:pTitle, author:pAuthor, status:pStatus, description:pDescription, id:pId} = PROPOSALS.find(e=> e.daoId===id && e.id===params.proposalId);
 
   return (<Grid container spacing={2}>
     <Grid item lg={8} xs={12} >
