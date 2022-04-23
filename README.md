@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# TODOs 
+- Dynamic routing to DAOs & proposals, the layouts are done
+- Proposal & DAO API endpoint to be able to receve data dynamically. 
+- dark mode using theme (shouldn't be very hard and super low priority)
+- Token ownership proofs to enable voting
+- Voting signature and exchange
+- Tell me to transfer some DCR to your account on Kovan (send me your address or ENS) [all]
+- Start working on the presentation, lay out the problem and solution. Maybe go briefly over technical challenges we could face.
+- (Optional) Try to get this same thing to work on Mina Protocol, talk with Jack. 
+- (Time constrained) Write some unit tests for the toughest parts of the crypto/web interaction. 
+- Wake me up when you get to the venue. 
