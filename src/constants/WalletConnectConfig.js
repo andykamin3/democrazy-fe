@@ -6,5 +6,5 @@ export const WalletConnectConfig = new WalletConnectConnector({
   qrcode: true,
 });
 export const Injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42]
+  supportedChainIds: [69]
 });

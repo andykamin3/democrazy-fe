@@ -15,18 +15,19 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import {Home} from "./routes/Home";
-import {DAOPage} from "./routes/DAOPage";
+import {ProposalPage} from "./routes/ProposalPage";
 import {BrowserRouter, Route, Routes, Link as RouterLink} from "react-router-dom";
 import {ConnectWalletComponent} from "./components/ConnectWalletComponent";
 
 import { Web3ReactProvider } from '@web3-react/core'
 import { Web3Provider } from "@ethersproject/providers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import {DAOPage} from "./routes/DAOPage";
 
 function getLibrary() {
   const p = new WalletConnectProvider({
     rpc: {
-      1: process.env.ALCHEMY_URL,
+      69: process.env.ALCHEMY_URL,
     },
   });
 
@@ -140,6 +141,7 @@ function App(props) {
 
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="proposal" element={<ProposalPage />} />
             <Route path="dao" element={<DAOPage />} />
 
             <Route
@@ -158,6 +160,7 @@ function App(props) {
     </Web3ReactProvider>
   );
 }
+
 
 App.propTypes = {
   /**
