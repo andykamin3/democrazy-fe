@@ -7,14 +7,28 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from "@mui/material/Button";
 import {useParams} from "react-router-dom";
+import {useWeb3React} from "@web3-react/core";
 
 export function ProposalPage(props) {
+
+
+
+  const {account, active} = useWeb3React();
+  const vote = (vote, address, proposal) => {
+    if (account){
+
+    } else {
+      alert("Connect Wallet on Optimism Kovan net")
+    }
+  }
+
   const params =useParams()
   console.log(params);
   let daoLookUp =DAOS.find((e)=> e.id === params.daoId);
   console.log(daoLookUp);
   const {name, id, img_url, description, token_address} = daoLookUp;
-  const {title:pTitle, author:pAuthor, status:pStatus, description:pDescription, id:pId} = PROPOSALS.find(e=> e.daoId===id && e.id===params.proposalId);
+  const proposalLookup = PROPOSALS.find(e=> e.daoId===id && e.id===params.proposalId);
+  const {title:pTitle, author:pAuthor, status:pStatus, description:pDescription, id:pId} = proposalLookup;
 
   return (<Grid container spacing={2}>
     <Grid item lg={8} xs={12} >
@@ -45,16 +59,26 @@ export function ProposalPage(props) {
             <Typography component="div" variant="h5">
               Cast your vote
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              Be careful, this action cannot be undone!
-            </Typography>
-          </CardContent>
-          <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-            <Button variant="contained" color="success">Yes</Button>
-            <Button variant="outline" color="error">No</Button>
-          </Box>
-        </Box>
+            {
+              new Date(pStatus?.date)>Date.now() ? (<Typography variant="subtitle1" color="text.secondary" component="div">
+                Be careful, this action cannot be undone!
+              </Typography>) : (<Typography variant="subtitle1" color="text.secondary" component="div">
+                Voting is no longer available
+              </Typography>)
+            }
 
+          </CardContent>
+          {
+            new Date(pStatus?.date)>Date.now() ? (<Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+              <Button variant="contained" color="success" onClick={()=>{
+                vote();
+              }}>Aye</Button>
+              <Button variant="outlined" color="error" onClick={()=>{
+                vote();
+              }}>Nay</Button>
+            </Box>) : null
+          }
+        </Box>
       </Card>
     </Grid>
   </Grid> );
