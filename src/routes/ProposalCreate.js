@@ -24,7 +24,6 @@ export function ProposalCreate() {
       })
       .then(function (response) {
         console.log(response);
-        alert("Done");
       })
       .catch(function (error) {
         console.log(error);
