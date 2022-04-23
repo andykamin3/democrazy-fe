@@ -19,6 +19,13 @@ export const DAOS = [{
     description: "Funding evil crypto buidlers to go to conferences 💸🤟 | padawandao.eth |",
     token_address:"0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153"
   },
+  {
+    name: "MakerDAO",
+    id:"Maker-DAO",
+    img_url: "https://globalcrypto.tv/wp-content/uploads/2019/03/MakerDAO-logo.png",
+    description: "MakerDAO is an Ethereum-based protocol that issues the Dai stablecoin and facilitates collateral-backed loans without an intermediary.",
+    token_address: "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2"
+  }
 ];
 
 

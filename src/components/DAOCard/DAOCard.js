@@ -12,32 +12,47 @@ import {Link as RouterLink} from "react-router-dom";
 export default function DAOCard(props) {
   const {name, id, img_url, description} = props.dao;
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
+    // <Card sx={{ minWidth: 275 }}>
+    //   <CardContent>
+    //     <Stack direction="row" spacing={2} className={"dao-title-container"}>
+    //       <Avatar
+    //         alt={name}
+    //         src={img_url}
+    //         sx={{ width: 56, height: 56 }}
+    //       />
+    //       <Typography variant="h5" component="div">
+    //         {name}
+    //       </Typography>
+    //     </Stack>
 
 
+    //     <Typography variant="body2">
+    //       {description}
 
-        <Stack direction="row" spacing={2} className={"dao-title-container"}>
-          <Avatar
-            alt={name}
-            src={img_url}
-            sx={{ width: 56, height: 56 }}
-          />
-          <Typography variant="h5" component="div">
-            {name}
-          </Typography>
+    //     </Typography>
+    //   </CardContent>
+    //   <CardActions>
+    //     <Button size="small"><Link component={RouterLink} to={"dao/"+id}>View</Link></Button>
+    //   </CardActions>
+    // </Card>
 
-      </Stack>
-
-
-        <Typography variant="body2">
-          {description}
-
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small"><Link component={RouterLink} to={"dao/"+id}>Learn More</Link></Button>
-      </CardActions>
-    </Card>
+    <Stack spacing={2} alignItems="center" sx={{
+      border: "1.5px solid #fff", 
+      borderRadius: 5,
+      padding: "30px 0px"
+      }}>
+      <Avatar
+        alt={name}
+        src={img_url}
+        sx={{ width:150, height: 150}}
+      />
+      <Typography variant="h5" component="div" sx={{fontWeight: 900}}>
+        {name}
+      </Typography>
+      <Typography variant="body2" textAlign="center" paddingX="30px">
+        {description}
+      </Typography>
+      <Button size="small"><Link component={RouterLink} to={"dao/"+id}>View</Link></Button>
+    </Stack>
   );
 }

@@ -25,6 +25,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import {DAOPage} from "./routes/DAOPage";
 import title from "./media/Title.png"
 import { blueGrey } from '@mui/material/colors';
+import { borderRight } from '@mui/system';
 
 function getLibrary() {
   const p = new WalletConnectProvider({
@@ -76,7 +77,6 @@ function App(props) {
         borderRadius: 15,
         backgroundColor: blueGrey[900],
       }}>
-        <h1>What the fuck</h1>
       </Box>
       <List style={{
         position: "fixed",
@@ -100,28 +100,7 @@ function App(props) {
     <BrowserRouter>
     <Box sx={{display: 'flex'}}>
       <CssBaseline/>
-      {/* <AppBar
-        position="fixed"
-        sx={{
-          width: {sm: `calc(100% - ${drawerWidth}px)`},
-          ml: {sm: `${drawerWidth}px`},
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{mr: 2, display: {sm: 'none'}}}
-          >
-            <MenuIcon/>
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            democrazy
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
+      <div style={{borderRight: "2px solid #fff", height: 1000}}>
       <Box
         component="nav"
         sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
@@ -138,6 +117,7 @@ function App(props) {
           {drawer}
         </Drawer>
       </Box>
+      </div>
       <Box
         component="main"
         sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
