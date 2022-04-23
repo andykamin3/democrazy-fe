@@ -1,16 +1,27 @@
-import {Paper, Stack, TextField} from "@mui/material";
+import { Paper, Stack, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
-import {Controller, useForm} from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useWeb3React } from "@web3-react/core";
 
 export function ProposalCreate() {
-  const {daoId} = useParams();
+  const { daoId } = useParams();
 
   const { handleSubmit, control } = useForm();
+  const { account, active } = useWeb3React();
+
   const onSubmit = async data => {
+    const sign = await window.ethereum.request({
+      method: "personal_sign",
+      params: [`Creating a proposal for ${daoId}`, account],
+    });
     axios
-      .post("https://dc-backend-rpal.vercel.app/addproposal", {...data, daoId})
+      .post("https://dc-backend-rpal.vercel.app/addproposal", {
+        ...data,
+        daoId,
+        sign
+      })
       .then(function (response) {
         console.log(response);
         alert("Done");

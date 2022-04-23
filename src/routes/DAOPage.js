@@ -25,8 +25,8 @@ export function DAOPage({ daos, proposals }) {
         <div>
           <Typography variant={"h4"}>Proposals</Typography>
           <Stack spacing={2}>
-            {proposals.map((proposal, idx) => (
-              <ProposalCard key={idx} proposal={proposal} />
+            {proposals.map((proposal) => (
+              <ProposalCard key={proposal} proposal={proposal} />
             ))}
           </Stack>
         </div>
