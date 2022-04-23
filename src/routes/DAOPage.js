@@ -47,15 +47,16 @@ export function DAOPage({ daos, proposals }) {
             {dao.name}
           </Typography>
         </Stack>
-        <Button size="small">
-          <Link component={RouterLink} to={"create"}>
-            Create a proposal
-          </Link>
-        </Button>{" "}
+        {" "}
         <Divider variant="middle" />
         <Typography sx={{ my: 2 }} variant="body1">
           {dao.description}
         </Typography>
+        <Button size="large" variant="contained" color="button" sx={{ textDecoration: "none", mt: 3 }}>
+          <Link component={RouterLink} to={"create"}>
+            Create a proposal
+          </Link>
+        </Button>
       </Grid>
     </Grid>
   );

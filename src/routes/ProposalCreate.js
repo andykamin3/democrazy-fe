@@ -43,7 +43,7 @@ export function ProposalCreate() {
    */
 
   return (
-    <Paper sx={{ padding: 8 }}>
+    <Paper sx={{ padding: 8, borderRadius: 5 }}>
       <h2>Register a proposal</h2>
       <form>
         <Stack spacing={2}>
