@@ -6,9 +6,9 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FaceIcon from "@mui/icons-material/Face";
-import { Chip, Link, Stack } from "@mui/material";
+import {Chip, Link, Stack} from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { Link as RouterLink } from "react-router-dom";
+import {Link as RouterLink} from "react-router-dom";
 
 export default function ProposalCard({ proposal }) {
   const props = proposal.status?.date.seconds;
@@ -68,7 +68,7 @@ export default function ProposalCard({ proposal }) {
                 sx={{ height: 35, paddingX: 1 }}
                 variant="outlined"
                 color={
-                  new Date(proposal.status?.date) > Date.now()
+                  new Date(proposal?.date+proposal?.time) > Date.now()
                     ? "secondary"
                     : "error"
                 }

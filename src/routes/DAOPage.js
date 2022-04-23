@@ -1,12 +1,12 @@
-import { Avatar, Divider, Grid, Stack, Typography } from "@mui/material";
+import { Avatar, Divider, Grid, Link, Stack, Typography } from "@mui/material";
 import ProposalCard from "../components/ProposalCard";
 import { Outlet } from "@mui/icons-material";
-import { useParams } from "react-router-dom";
+import { Link as RouterLink, useParams } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export function DAOPage({ daos, proposals }) {
   const params = useParams();
   const dao = daos.find(e => e.id === params.daoId);
-
   const props = [];
   for (const proposal of proposals) {
     if (proposal.daoId === dao.id) {
@@ -23,9 +23,9 @@ export function DAOPage({ daos, proposals }) {
       <Grid item lg={8} xs={12}>
         <div>
           <Typography sx={{fontWeight: 200, marginBottom: 5, ml: "50px" }} variant={"h4"}>Proposals</Typography>
-          <Stack spacing={4}>
-            {proposals.map((proposal, idx) => (
-              <ProposalCard key={idx} proposal={proposal} />
+          <Stack spacing={2}>
+            {proposals.map(proposal => (
+              <ProposalCard key={proposal.id} proposal={proposal} />
             ))}
           </Stack>
         </div>
@@ -47,6 +47,11 @@ export function DAOPage({ daos, proposals }) {
             {dao.name}
           </Typography>
         </Stack>
+        <Button size="small">
+          <Link component={RouterLink} to={"create"}>
+            Create a proposal
+          </Link>
+        </Button>{" "}
         <Divider variant="middle" />
         <Typography sx={{ my: 2 }} variant="body1">
           {dao.description}
