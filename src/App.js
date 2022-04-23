@@ -1,19 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import HomeIcon from '@mui/icons-material/Home';
 import {Home} from "./routes/Home";
 import {ProposalPage} from "./routes/ProposalPage";
 import {BrowserRouter, Link as RouterLink, Route, Routes} from "react-router-dom";
@@ -24,9 +17,10 @@ import {Web3Provider} from "@ethersproject/providers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import {DAOPage} from "./routes/DAOPage";
 import title from "./media/Title.png"
-import { blueGrey } from '@mui/material/colors';
-import { borderRight } from '@mui/system';
+import {ProposalCreate} from "./routes/ProposalCreate";
+import {QueryClient, QueryClientProvider,} from 'react-query';
 
+const queryClient = new QueryClient();
 function getLibrary() {
   const p = new WalletConnectProvider({
     rpc: {
@@ -48,7 +42,7 @@ function App(props) {
   };
 
   const drawer = (
-    <Box 
+    <Box
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -58,9 +52,9 @@ function App(props) {
         textAlign: "center"
       }}>
         <ListItem to={"/"} component={RouterLink} key={'Home'}>
-            <img 
-              src={title} 
-              alt="logo" 
+            <img
+              src={title}
+              alt="logo"
               width={200}
               style={{
                 marginLeft: -40,
@@ -69,15 +63,16 @@ function App(props) {
             />
         </ListItem>
       </List>
-      <Box style={{
-        position: "fixed",
-        top: 120,
-        width: 200,
-        height: 500,
-        borderRadius: 15,
-        backgroundColor: blueGrey[900],
-      }}>
-      </Box>
+      {/*<Box style={{*/}
+      {/*  position: "fixed",*/}
+      {/*  top: 120,*/}
+      {/*  width: 200,*/}
+      {/*  height: 500,*/}
+      {/*  borderRadius: 15,*/}
+      {/*  backgroundColor: blueGrey[900],*/}
+      {/*}}>*/}
+      {/*  <h1>What the fuck</h1>*/}
+      {/*</Box>*/}
       <List style={{
         position: "fixed",
         bottom: 0,
@@ -98,9 +93,31 @@ function App(props) {
     <Web3ReactProvider getLibrary={getLibrary}>
 
     <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
     <Box sx={{display: 'flex'}}>
       <CssBaseline/>
-      <div style={{borderRight: "2px solid #fff", height: 1000}}>
+      {/* <AppBar
+        position="fixed"
+        sx={{
+          width: {sm: `calc(100% - ${drawerWidth}px)`},
+          ml: {sm: `${drawerWidth}px`},
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{mr: 2, display: {sm: 'none'}}}
+          >
+            <MenuIcon/>
+          </IconButton>
+          <Typography variant="h6" noWrap component="div">
+            democrazy
+          </Typography>
+        </Toolbar>
+      </AppBar> */}
       <Box
         component="nav"
         sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
@@ -117,7 +134,6 @@ function App(props) {
           {drawer}
         </Drawer>
       </Box>
-      </div>
       <Box
         component="main"
         sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
@@ -128,6 +144,7 @@ function App(props) {
             <Route path="/" element={<Home />} />
             <Route path="dao/:daoId/proposal/:proposalId" element={<ProposalPage />} />
             <Route path={"dao/:daoId"} element={<DAOPage />}/>
+            <Route path={"dao/:daoId/create/"} element={<ProposalCreate/>}/>
             <Route
               path="*"
               element={
@@ -140,6 +157,7 @@ function App(props) {
 
       </Box>
     </Box>
+      </QueryClientProvider>
 </BrowserRouter>
     </Web3ReactProvider>
   );
