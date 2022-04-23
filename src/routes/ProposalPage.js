@@ -1,12 +1,12 @@
-import { Chip, Grid, Stack, Typography } from "@mui/material";
+import {Chip, Grid, Stack, Typography} from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import { useParams } from "react-router-dom";
-import { useWeb3React } from "@web3-react/core";
+import {useParams} from "react-router-dom";
+import {useWeb3React} from "@web3-react/core";
 
 export function ProposalPage({ daos, proposals }) {
   const { daoId, proposalId } = useParams();
@@ -57,6 +57,8 @@ export function ProposalPage({ daos, proposals }) {
     pStatusO = pStatus;
     pDescriptionO = pDescription;
     pFdtO = pDate + pTime;
+    pDateO = pDate;
+    console.log(new Date(pDate))
   }
 
   return (
@@ -81,7 +83,7 @@ export function ProposalPage({ daos, proposals }) {
             spacing={1}
             className={"dao-title-container"}
           >
-            {pStatusO?.result !== undefined && (
+            {new Date(pDateO) > Date.now() !== undefined && (
               <Chip
                 color={pStatusO?.result ? "success" : "error"}
                 label={pStatusO?.result ? "Aye" : "Nay"}
@@ -95,9 +97,7 @@ export function ProposalPage({ daos, proposals }) {
               icon={<CalendarMonthIcon />}
               label={
                 "Voting closes @ " +
-                new Date(pFdtO).toLocaleDateString() +
-                " " +
-                new Date(pFdtO).toLocaleTimeString()
+                new Date(pDateO).toLocaleDateString()
               }
               component={"span"}
             />
@@ -113,7 +113,7 @@ export function ProposalPage({ daos, proposals }) {
               <Typography component="div" variant="h5">
                 Cast your vote
               </Typography>
-              {new Date(pFdtO) > Date.now() ? (
+              {new Date(pDateO) > Date.now() ? (
                 <Typography
                   variant="subtitle1"
                   color="text.secondary"
@@ -131,7 +131,7 @@ export function ProposalPage({ daos, proposals }) {
                 </Typography>
               )}
             </CardContent>
-            {new Date(pFdtO) > Date.now() ? (
+            {new Date(pDateO) > Date.now() ? (
               <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
                 <Button
                   variant="contained"
