@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { blueGrey } from '@mui/material/colors';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { blueGrey } from "@mui/material/colors";
 
 const theme = createTheme({
   palette: {
-    type: 'dark',
+    type: "dark",
     primary: {
-      main: "#fff", 
+      main: "#fff",
     },
     secondary: {
       main: "#b0bec5"
@@ -26,7 +26,7 @@ const theme = createTheme({
   },
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

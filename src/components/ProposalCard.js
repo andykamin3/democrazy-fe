@@ -1,17 +1,18 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import FaceIcon from '@mui/icons-material/Face';
-import {Chip, Link, Stack} from "@mui/material";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import {Link as RouterLink} from "react-router-dom";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import FaceIcon from "@mui/icons-material/Face";
+import { Chip, Link, Stack } from "@mui/material";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { Link as RouterLink } from "react-router-dom";
 
-export default function ProposalCard(props) {
-  const {title, author, status, description, id, daoId} = props.proposal
+export default function ProposalCard({ proposal }) {
+  const props = proposal.status?.date.seconds;
+  const lbl = new Date(props * 1000).toDateString();
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="confined" sx={{
