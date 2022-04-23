@@ -15,6 +15,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import {Home} from "./routes/Home";
+import {DAOPage} from "./routes/DAOPage";
 import {BrowserRouter, Route, Routes, Link as RouterLink} from "react-router-dom";
 import {ConnectWalletComponent} from "./components/ConnectWalletComponent";
 
@@ -139,6 +140,7 @@ function App(props) {
 
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="dao" element={<DAOPage />} />
 
             <Route
               path="*"
