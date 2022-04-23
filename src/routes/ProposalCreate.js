@@ -1,15 +1,19 @@
-import { Paper, Stack, TextField } from "@mui/material";
+import {Paper, Stack, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
-import { Controller, useForm } from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 export function ProposalCreate() {
+  const {daoId} = useParams();
+
   const { handleSubmit, control } = useForm();
   const onSubmit = async data => {
     axios
-      .post("https://dc-backend-rpal.vercel.app/addproposal", data)
+      .post("https://dc-backend-rpal.vercel.app/addproposal", {...data, daoId})
       .then(function (response) {
         console.log(response);
+        alert("Done");
       })
       .catch(function (error) {
         console.log(error);

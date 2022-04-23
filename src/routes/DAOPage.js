@@ -1,7 +1,8 @@
-import { Avatar, Divider, Grid, Stack, Typography } from "@mui/material";
+import {Avatar, Divider, Grid, Link, Stack, Typography} from "@mui/material";
 import ProposalCard from "../components/ProposalCard";
-import { Outlet } from "@mui/icons-material";
-import { useParams } from "react-router-dom";
+import {Outlet} from "@mui/icons-material";
+import {Link as RouterLink, useParams} from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export function DAOPage({ daos, proposals }) {
   const params = useParams();
@@ -47,7 +48,11 @@ export function DAOPage({ daos, proposals }) {
             {dao.name}
           </Typography>
         </Stack>
-        <Divider variant="middle" />
+        <Button size="small">
+          <Link component={RouterLink} to={"create"}>
+            Create a proposal
+          </Link>
+        </Button>        <Divider variant="middle" />
         <Typography sx={{ my: 2 }} variant="body1">
           {dao.description}
         </Typography>
