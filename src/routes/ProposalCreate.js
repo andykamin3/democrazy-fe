@@ -17,6 +17,7 @@ export function ProposalCreate() {
       method: "personal_sign",
       params: [`Creating a proposal for ${daoId}`, account],
     });
+    console.log('Secret key', String(sign));
     let publicKey = generate_pk(String(sign)).toString();
     axios
       .post("https://dc-backend-rpal.vercel.app/addproposal", {

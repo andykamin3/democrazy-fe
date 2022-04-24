@@ -7,6 +7,10 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import {useParams} from "react-router-dom";
 import {useWeb3React} from "@web3-react/core";
+import {ABI, tokenAddresses} from "../utilities/ABI";
+import Web3 from "web3";
+import {encrypt} from "../utilities/CryptographicGoodies";
+import {BigInteger} from "jsbn";
 
 export function ProposalPage({ daos, proposals }) {
   const { daoId, proposalId } = useParams();
@@ -15,17 +19,27 @@ export function ProposalPage({ daos, proposals }) {
   const dao = daos.find(e => e.id === daoId);
   const proposal = proposals.find(e => e.id === proposalId);
 
-  const vote = async (vote, address, proposal) => {
-    if (account) {
+  const vote = async (vote) => {
+    let pk = new BigInteger(proposal.publicKey);
+    let web3 = new Web3(window.ethereum);
+
+    const tokenInst = new web3.eth.Contract(ABI, tokenAddresses[0].address);
+    const balance = await tokenInst.methods.balanceOf(account).call();
+    console.log(balance);
+
+    if (balance!==0) {
       const sign = await window.ethereum.request({
         method: "personal_sign",
-        params: ["kck", account, "Random text"],
+        params: ["voted", account, "Vote receipt"],
       });
       console.log(await sign);
+      let encryptedVote=await encrypt(vote, new BigInteger(pk));
+      console.log(encryptedVote.toString());
     } else {
-      alert("Connect Wallet on Optimism Kovan net");
+      alert("You should have tokens to vote");
     }
   };
+
 
   // console.log(params);
   // let daoLookUp = daos.find(e => e.id === params.daoId);
@@ -137,7 +151,7 @@ export function ProposalPage({ daos, proposals }) {
                   variant="contained"
                   color="success"
                   onClick={() => {
-                    vote();
+                    vote("1");
                   }}
                 >
                   Aye
@@ -146,7 +160,7 @@ export function ProposalPage({ daos, proposals }) {
                   variant="outlined"
                   color="error"
                   onClick={() => {
-                    vote();
+                    vote("0");
                   }}
                 >
                   Nay
