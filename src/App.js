@@ -95,7 +95,7 @@ function App(props) {
         position: "fixed",
         top: 120,
         width: 200,
-        height: 500,
+        height: "60%",
         borderRadius: 15,
         backgroundColor: blueGrey[900],
       }}>
@@ -171,7 +171,7 @@ function App(props) {
               component="main"
               sx={{
                 flexGrow: 1,
-                p: 3,
+                px: 25,
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
               }}
             >

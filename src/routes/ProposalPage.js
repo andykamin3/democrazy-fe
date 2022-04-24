@@ -76,10 +76,10 @@ export function ProposalPage({ daos, proposals }) {
   }
 
   return (
-    <Grid container spacing={2}>
-      <Grid item lg={8} xs={12}>
+    <Grid container spacing={2} sx={{ml: "-200px"}}>
+      <Grid item lg={7.5} xs={12} sx={{ ml: "50px" }}>
         <div>
-          <Typography variant={"h4"}>{pTitleO}</Typography>
+          <Typography sx={{ fontWeight: 200 }} variant={"h4"}>{pTitleO}</Typography>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             By Author{" "}
             <Chip
@@ -91,8 +91,9 @@ export function ProposalPage({ daos, proposals }) {
               component={"span"}
             />
           </Typography>
-          <Typography paragraph>{pDescriptionO}</Typography>
+          <Typography sx={{ mt: 3 }} paragraph>{pDescriptionO}</Typography>
           <Stack
+            sx={{ position: "relative", mb: "75px"}}
             direction={"row"}
             spacing={1}
             className={"dao-title-container"}
@@ -102,6 +103,7 @@ export function ProposalPage({ daos, proposals }) {
                 color={pStatusO?.result ? "success" : "error"}
                 label={pStatusO?.result ? "Aye" : "Nay"}
                 component={"span"}
+                sx={{height: "35px", borderRadius: 50}}
               />
             )}
             <Chip
@@ -114,15 +116,24 @@ export function ProposalPage({ daos, proposals }) {
                 new Date(pDateO).toLocaleDateString()
               }
               component={"span"}
+              sx={{height: "35px", px: 1}}
             />
           </Stack>
         </div>
       </Grid>
 
-      <Grid item lg={4} xs={12}>
-        <Typography variant={"h4"}>Voting</Typography>
-        <Card sx={{ display: "flex" }}>
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Grid item sx={{ position: "fixed", right: 3, width: "300px", mr: "40px" }}>
+        <Card sx={{ display: "flex", backgroundColor: "transparent" }}>
+          <Box sx={{ 
+            display: "flex", 
+            flexDirection: "column",
+            borderRadius: 5,
+            border: "1px solid white",
+            backgroundColor: "background.default",
+            paddingX: "8px",
+            paddingBottom: "10px",
+            width: "600px", 
+            }}>
             <CardContent sx={{ flex: "1 0 auto" }}>
               <Typography component="div" variant="h5">
                 Cast your vote
@@ -157,10 +168,13 @@ export function ProposalPage({ daos, proposals }) {
                   Aye
                 </Button>
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   color="error"
                   onClick={() => {
                     vote("0");
+                  }}
+                  sx={{
+                    ml: 1.5
                   }}
                 >
                   Nay

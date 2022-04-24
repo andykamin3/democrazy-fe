@@ -15,6 +15,10 @@ const theme = createTheme({
     secondary: {
       main: "#b0bec5"
     },
+    button: {
+      main: "#37474F",
+      darker: "#546e7a"
+    },
     text: {
       primary: "#fff",
       secondary: "#90a4ae"

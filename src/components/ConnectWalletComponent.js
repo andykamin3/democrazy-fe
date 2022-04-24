@@ -23,7 +23,7 @@ export function ConnectWalletComponent() {
       }>Metamask</Button>
     </div>
   )
-  const connectedChip = <Chip onClick={deactivate} variant="outlined" color="success" icon={<FaceIcon />} label={"Connected @"+account?.substring(0,6)+"..."}/>;
+  const connectedChip = <Chip onClick={deactivate} variant="outlined" color="success" sx={{ backgroundColor: "whitesmoke"}} icon={<FaceIcon />} label={"@"+account?.substring(0,15)+"..."}/>;
   const disconnectedChip = <Chip variant="outlined" color="warning" icon={<FaceIcon />} label={"Connected @"+account?.substring(0,6)+"..."}/>;
   return account ? (active?connectedChip : disconnectedChip) : walletButtons;
 }
