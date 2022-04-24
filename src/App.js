@@ -171,7 +171,7 @@ function App(props) {
               component="main"
               sx={{
                 flexGrow: 1,
-                px: 20,
+                px: 25,
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
               }}
             >

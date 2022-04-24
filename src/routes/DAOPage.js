@@ -19,7 +19,7 @@ export function DAOPage({ daos, proposals }) {
   }
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ml: "-200px"}}>
       <Grid item lg={8} xs={12}>
         <div>
           <Typography sx={{fontWeight: 200, marginBottom: 5, ml: "50px" }} variant={"h4"}>Proposals</Typography>

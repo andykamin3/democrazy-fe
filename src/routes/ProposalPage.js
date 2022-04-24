@@ -62,7 +62,7 @@ export function ProposalPage({ daos, proposals }) {
   }
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ml: "-200px"}}>
       <Grid item lg={7.5} xs={12} sx={{ ml: "50px" }}>
         <div>
           <Typography sx={{ fontWeight: 200 }} variant={"h4"}>{pTitleO}</Typography>
@@ -108,7 +108,7 @@ export function ProposalPage({ daos, proposals }) {
         </div>
       </Grid>
 
-      <Grid item lg={3} xs={12} sx={{ ml: "50px" }}>
+      <Grid item sx={{ position: "fixed", right: 3, width: "300px", mr: "40px" }}>
         <Card sx={{ display: "flex", backgroundColor: "transparent" }}>
           <Box sx={{ 
             display: "flex", 
